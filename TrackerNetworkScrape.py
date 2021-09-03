@@ -14,10 +14,6 @@ class Webscrape():
     def __init__(self):
         self.webpath = "https://api.tracker.gg/api/v2/rocket-league/standard/profile/"
         self.headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36'}
-        self.latestseason = '18' #need a better way to update this, perhaps dynamically?
-        self.rltrackermissing = "We could not find your stats,"
-        self.psyonixdisabled = "Psyonix has disabled the Rocket League API"
-
 
     def retrieveDataRLTrackerFromURL(self,url):
         headers = self.headers
