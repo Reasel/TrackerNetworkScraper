@@ -3,8 +3,6 @@
 
 import argparse
 import requests
-import re
-from setup_logging import logger
 import json
 import csv
 
@@ -54,45 +52,6 @@ def singleRun(gamertag,platform):
         pprint(data)
 
 def manyRun(playerCsv):
-    name               = 0
-    trackerNetwork     = 1
-    statsLink          = 2
-    onesIcon           = 3
-    onesRank           = 4
-    onesDivision       = 5
-    onesMMR            = 6
-    twosIcon           = 7
-    twosRank           = 8
-    twosDivision       = 9
-    twosMMR            = 10
-    threesIcon         = 11
-    threesRank         = 12
-    threesDivision     = 13
-    threesMMR          = 14
-    casualIcon         = 15
-    casualRank         = 16
-    casualDivision     = 17
-    casualMMR          = 18
-    snowdayIcon        = 19
-    snowdayRank        = 20
-    snowdayDivision    = 21
-    snowdayMMR         = 22
-    rumbleIcon         = 23
-    rumbleRank         = 24
-    rumbleDivision     = 25
-    rumbleMMR          = 26
-    dropshotIcon       = 27
-    dropshotRank       = 28
-    dropshotDivision   = 29
-    dropshotMMR        = 30
-    hoopsIcon          = 31
-    hoopsRank          = 32
-    hoopsDivision      = 33
-    hoopsMMR           = 34
-    tournamentIcon     = 35
-    tournamentRank     = 36
-    tournamentDivision = 37
-    tournamentMMR      = 38
     scrape = Webscrape()
     with open(playerCsv, newline='', mode='r+') as csvfile:
         reader = csv.DictReader(csvfile)
