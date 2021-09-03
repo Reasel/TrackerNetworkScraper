@@ -1,0 +1,8 @@
+bs4
+lxml
+requests
+datetime
+argparse
+asyncio
+aioify
+tqdm
