@@ -29,8 +29,6 @@ class Webscrape():
     def retrieveDataRLTracker(self,gamertag="reasel",platform="steam"):
         webpath = self.webpath
         headers = self.headers
-        rltrackermissing = self.rltrackermissing
-        psyonixdisabled = self.psyonixdisabled
         playerdata = {} # define the playerdata dict
         playerdata[gamertag] = {} # define the gamertag dict
         page = requests.get("%(webpath)s%(platform)s/%(gamertag)s" % locals(), headers=headers)
@@ -60,50 +58,59 @@ def manyRun(playerCsv):
             writer.writeheader()
             for row in reader:
                 data = scrape.retrieveDataRLTrackerFromURL(url=row['Link to Stats'])
-                row['1\'s Icon']           = data['Ranked Duel 1v1']['iconUrl']
-                row['1\'s Division']       = data['Ranked Duel 1v1']['division']
-                row['1\'s MMR']            = data['Ranked Duel 1v1']['mmr']
-                row['1\'s Rank']           = data['Ranked Duel 1v1']['rank']
+                if 'Ranked Duel 1v1' in data:
+                    row['1\'s Icon']           = data['Ranked Duel 1v1']['iconUrl']
+                    row['1\'s Division']       = data['Ranked Duel 1v1']['division']
+                    row['1\'s MMR']            = data['Ranked Duel 1v1']['mmr']
+                    row['1\'s Rank']           = data['Ranked Duel 1v1']['rank']
 
-                row['2\'s Icon']           = data['Ranked Doubles 2v2']['iconUrl']
-                row['2\'s Division']       = data['Ranked Doubles 2v2']['division']
-                row['2\'s MMR']            = data['Ranked Doubles 2v2']['mmr']
-                row['2\'s Rank']           = data['Ranked Doubles 2v2']['rank']
+                if 'Ranked Doubles 2v2' in data:
+                    row['2\'s Icon']           = data['Ranked Doubles 2v2']['iconUrl']
+                    row['2\'s Division']       = data['Ranked Doubles 2v2']['division']
+                    row['2\'s MMR']            = data['Ranked Doubles 2v2']['mmr']
+                    row['2\'s Rank']           = data['Ranked Doubles 2v2']['rank']
 
-                row['3\'s Icon']           = data['Ranked Standard 3v3']['iconUrl']
-                row['3\'s Division']       = data['Ranked Standard 3v3']['division']
-                row['3\'s MMR']            = data['Ranked Standard 3v3']['mmr']
-                row['3\'s Rank']           = data['Ranked Standard 3v3']['rank']
+                if 'Ranked Standard 3v3' in data:
+                    row['3\'s Icon']           = data['Ranked Standard 3v3']['iconUrl']
+                    row['3\'s Division']       = data['Ranked Standard 3v3']['division']
+                    row['3\'s MMR']            = data['Ranked Standard 3v3']['mmr']
+                    row['3\'s Rank']           = data['Ranked Standard 3v3']['rank']
 
-                row['Casual Icon']         = data['Un-Ranked']['iconUrl']
-                row['Casual Division']     = data['Un-Ranked']['division']
-                row['Casual MMR']          = data['Un-Ranked']['mmr']
-                row['Casual Rank']         = data['Un-Ranked']['rank']
+                if 'Un-Ranked' in data:
+                    row['Casual Icon']         = data['Un-Ranked']['iconUrl']
+                    row['Casual Division']     = data['Un-Ranked']['division']
+                    row['Casual MMR']          = data['Un-Ranked']['mmr']
+                    row['Casual Rank']         = data['Un-Ranked']['rank']
 
-                row['Tournament Icon']     = data['Tournament Matches']['iconUrl']
-                row['Tournament Division'] = data['Tournament Matches']['division']
-                row['Tournament MMR']      = data['Tournament Matches']['mmr']
-                row['Tournament Rank']     = data['Tournament Matches']['rank']
+                if 'Tournament Matches' in data:
+                    row['Tournament Icon']     = data['Tournament Matches']['iconUrl']
+                    row['Tournament Division'] = data['Tournament Matches']['division']
+                    row['Tournament MMR']      = data['Tournament Matches']['mmr']
+                    row['Tournament Rank']     = data['Tournament Matches']['rank']
 
-                row['Hoops Icon']          = data['Hoops']['iconUrl']
-                row['Hoops Division']      = data['Hoops']['division']
-                row['Hoops MMR']           = data['Hoops']['mmr']
-                row['Hoops Rank']          = data['Hoops']['rank']
+                if 'Hoops' in data:
+                    row['Hoops Icon']          = data['Hoops']['iconUrl']
+                    row['Hoops Division']      = data['Hoops']['division']
+                    row['Hoops MMR']           = data['Hoops']['mmr']
+                    row['Hoops Rank']          = data['Hoops']['rank']
 
-                row['Snowday Icon']        = data['Snowday']['iconUrl']
-                row['Snowday Division']    = data['Snowday']['division']
-                row['Snowday MMR']         = data['Snowday']['mmr']
-                row['Snowday Rank']        = data['Snowday']['rank']
+                if 'Snowday' in data:
+                    row['Snowday Icon']        = data['Snowday']['iconUrl']
+                    row['Snowday Division']    = data['Snowday']['division']
+                    row['Snowday MMR']         = data['Snowday']['mmr']
+                    row['Snowday Rank']        = data['Snowday']['rank']
 
-                row['Dropshot Icon']       = data['Dropshot']['iconUrl']
-                row['Dropshot Division']   = data['Dropshot']['division']
-                row['Dropshot MMR']        = data['Dropshot']['mmr']
-                row['Dropshot Rank']       = data['Dropshot']['rank']
+                if 'Dropshot' in data:
+                    row['Dropshot Icon']       = data['Dropshot']['iconUrl']
+                    row['Dropshot Division']   = data['Dropshot']['division']
+                    row['Dropshot MMR']        = data['Dropshot']['mmr']
+                    row['Dropshot Rank']       = data['Dropshot']['rank']
 
-                row['Rumble Icon']         = data['Rumble']['iconUrl']
-                row['Rumble Division']     = data['Rumble']['division']
-                row['Rumble MMR']          = data['Rumble']['mmr']
-                row['Rumble Rank']         = data['Rumble']['rank']
+                if 'Rumble' in data:
+                    row['Rumble Icon']         = data['Rumble']['iconUrl']
+                    row['Rumble Division']     = data['Rumble']['division']
+                    row['Rumble MMR']          = data['Rumble']['mmr']
+                    row['Rumble Rank']         = data['Rumble']['rank']
                 writer.writerow(row)
         
         
